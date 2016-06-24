@@ -39,7 +39,7 @@
             {% endif %}
             "Fn::Join" : ["\n", [
               {% for line in lambda_source_code  %}
-              "{{ line |  regex_replace('\"','\\\"') }}"
+              {{ line |  to_json  }}
               {% if not loop.last %}, {% endif %}
               {% endfor %}
             ]]

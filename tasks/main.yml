@@ -31,7 +31,7 @@
 
 - name: Copy files to virtualenv
   command: "cp {{ item }} {{ lambda_build_dir }}/{{ lambda_virtualenv_dir }}/"
-  with_items: "{{ lambda_dependencies }}"
+  with_items: "{{ lambda_dependencies | default([]) }}"
   when: lambda_create_bundle is defined and lambda_create_bundle == 'yes' and lambda_dependencies is defined
 
 - name: Create virtualenv
